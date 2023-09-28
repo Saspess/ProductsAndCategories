@@ -19,4 +19,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductsAndCategories.Business\ProductsAndCategories.Business.csproj" />
+    <ProjectReference Include="..\ProductsAndCategories.Data\ProductsAndCategories.Data.csproj" />
+  </ItemGroup>
+
 </Project>
