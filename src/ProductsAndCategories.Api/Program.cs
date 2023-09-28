@@ -1,3 +1,4 @@
+using ProductsAndCategories.Business.IoC;
 using ProductsAndCategories.Data.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.ConfigureDataLayer(builder.Configuration);
+builder.Services
+    .ConfigureDataLayer(builder.Configuration)
+    .ConfigureBusinessLayer();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
