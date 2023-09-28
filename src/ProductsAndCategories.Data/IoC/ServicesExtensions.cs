@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductsAndCategories.Data.Contexts.Contracts;
 using ProductsAndCategories.Data.Contexts.Implementation;
+using ProductsAndCategories.Data.Repositories.Contracts;
+using ProductsAndCategories.Data.Repositories.Implementation;
 
 namespace ProductsAndCategories.Data.IoC
 {
@@ -28,6 +30,14 @@ namespace ProductsAndCategories.Data.IoC
         public static IServiceCollection ConfigureDbContext(this IServiceCollection services)
         {
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             return services;
         }
