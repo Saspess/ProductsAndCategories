@@ -12,6 +12,15 @@ builder.Services
     .ConfigureDataLayer(builder.Configuration)
     .ConfigureBusinessLayer();
 
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
+    b =>
+    {
+        b.AllowAnyOrigin();
+        b.AllowAnyHeader();
+        b.AllowAnyMethod();
+
+    }));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -25,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
