@@ -13,7 +13,8 @@ namespace ProductsAndCategories.Data.IoC
         public static IServiceCollection ConfigureDataLayer(this IServiceCollection services, IConfiguration configuration)
         {
             services.ConfigureSqlContext(configuration)
-                .ConfigureDbContext();
+                .ConfigureDbContext()
+                .ConfigureRepositories();
 
             return services;
         }
