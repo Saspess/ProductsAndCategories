@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProductsAndCategories.Business.Services.Contracts;
+using ProductsAndCategories.Business.Services.Implementation;
 using System.Reflection;
 
 namespace ProductsAndCategories.Business.IoC
@@ -15,6 +17,14 @@ namespace ProductsAndCategories.Business.IoC
         public static IServiceCollection ConfigureAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
+        {
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             return services;
         }
