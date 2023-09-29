@@ -29,7 +29,7 @@ namespace ProductsAndCategories.Business.Services.Implementation
         public async Task<CategoryViewDto> GetByIdAsync(int id)
         {
             var categoryEntity = await _categoryRepository.GetByIdAsync(id)
-                ?? throw new NotFoundException("Categort was not found.");
+                ?? throw new NotFoundException("Category was not found.");
 
             var categoryViewDto = _mapper.Map<CategoryViewDto>(categoryEntity);
 
