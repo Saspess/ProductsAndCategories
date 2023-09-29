@@ -83,7 +83,7 @@ namespace ProductsAndCategories.Business.Services.Implementation
 
         public async Task DeleteAsync(int id)
         {
-            var existingProductEntity = await _categoryRepository.GetByIdAsync(id)
+            var existingProductEntity = await _productRepository.GetByIdAsync(id)
                 ?? throw new NotFoundException("Product was not found.");
 
             await _productRepository.DeleteAsync(id);
