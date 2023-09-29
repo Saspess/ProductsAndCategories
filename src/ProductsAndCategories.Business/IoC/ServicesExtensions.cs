@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using ProductsAndCategories.Business.Services.Contracts;
 using ProductsAndCategories.Business.Services.Implementation;
 using System.Reflection;
@@ -9,7 +10,9 @@ namespace ProductsAndCategories.Business.IoC
     {
         public static IServiceCollection ConfigureBusinessLayer(this IServiceCollection services)
         {
-            services.ConfigureAutoMapper();
+            services.ConfigureAutoMapper()
+                .ConfigureServices()
+                .ConfigureFluentValidation();
 
             return services;
         }
@@ -25,6 +28,13 @@ namespace ProductsAndCategories.Business.IoC
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureFluentValidation(this IServiceCollection services)
+        {
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }
